@@ -1,0 +1,132 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Tariffs on Women’s Goods Are Consistently Higher Across Countries",
+    "subtitle": "Women’s products face consistently higher trade barriers than general consumer goods across major economies (2023).",
+    "fontSize": 25,
+    "subtitleFontSize": 14,
+    "anchor": "start"
+  },
+  "width": 600,
+  "height": 350,
+  "data": {
+    "values": [
+      {"Country": "Brazil", "Type": "Women's Goods Tariff (%)", "Tariff": 28.3},
+      {
+        "Country": "Brazil",
+        "Type": "Consumer Products Tariff (%)",
+        "Tariff": 16.5
+      },
+      {"Country": "Germany", "Type": "Women's Goods Tariff (%)", "Tariff": 8.6},
+      {
+        "Country": "Germany",
+        "Type": "Consumer Products Tariff (%)",
+        "Tariff": 5.2
+      },
+      {"Country": "India", "Type": "Women's Goods Tariff (%)", "Tariff": 18.8},
+      {
+        "Country": "India",
+        "Type": "Consumer Products Tariff (%)",
+        "Tariff": 13.5
+      },
+      {
+        "Country": "Tanzania",
+        "Type": "Women's Goods Tariff (%)",
+        "Tariff": 27.8
+      },
+      {
+        "Country": "Tanzania",
+        "Type": "Consumer Products Tariff (%)",
+        "Tariff": 15.4
+      },
+      {
+        "Country": "Thailand",
+        "Type": "Women's Goods Tariff (%)",
+        "Tariff": 17.5
+      },
+      {
+        "Country": "Thailand",
+        "Type": "Consumer Products Tariff (%)",
+        "Tariff": 11.7
+      },
+      {
+        "Country": "United Kingdom",
+        "Type": "Women's Goods Tariff (%)",
+        "Tariff": 6.9
+      },
+      {
+        "Country": "United Kingdom",
+        "Type": "Consumer Products Tariff (%)",
+        "Tariff": 4.9
+      },
+      {
+        "Country": "United States",
+        "Type": "Women's Goods Tariff (%)",
+        "Tariff": 9.1
+      },
+      {
+        "Country": "United States",
+        "Type": "Consumer Products Tariff (%)",
+        "Tariff": 3.7
+      }
+    ]
+  },
+  "layer": [
+    {
+      "mark": "bar",
+      "encoding": {
+        "x": {
+          "field": "Country",
+          "type": "nominal",
+          "axis": {"labelAngle": -40},
+          "title": ""
+        },
+        "xOffset": {
+          "field": "Type",
+          "sort": ["Women's Goods Tariff (%)", "Consumer Products Tariff (%)"]
+        },
+        "y": {
+          "field": "Tariff",
+          "type": "quantitative",
+          "title": "Weighted Average Tariff (%)",
+          "axis": {"titlePadding": 20}
+        },
+        "color": {
+          "field": "Type",
+          "type": "nominal",
+          "title": "",
+          "sort": ["Women's Goods Tariff (%)", "Consumer Products Tariff (%)"],
+          "legend": {"orient": "top", "padding": 10},
+          "scale": {
+            "domain": [
+              "Women's Goods Tariff (%)",
+              "Consumer Products Tariff (%)"
+            ],
+            "range": ["#e377c2", "#17becf"]
+          }
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "top",
+        "fontWeight": "lighter",
+        "fontStyle": "italic",
+        "fontSize": 12,
+        "dy": 0,
+        "dx": -40,
+        "anchor": "start"
+      },
+      "encoding": {
+        "text": {
+          "value": "Source: Agarwal, P. (2025) Tariff burden of women’s goods in trade. ODI Global background note. London: ODI Global"
+        },
+        "x": {"value": 0},
+        "y": {"value": 430}
+      }
+    }
+  ],
+  "config": {"background": "rgba(0,0,0,0)"}
+}

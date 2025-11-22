@@ -1,0 +1,83 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Why Tariffs Hit Women the Hardest in Developing Economies",
+    "subtitle": "Women dominate affected industries, carry heavier consumer burdens, and face greater economic vulnerability.",
+    "dy": -20,
+    "fontSize": 25,
+    "anchor": "start"
+  },
+  "width": 600,
+  "height": 300,
+  "data": {
+    "values": [
+      {
+        "Metric": "Working in Key Export Sectors",
+        "Group": "Women",
+        "Value": 80
+      },
+      {"Metric": "Working in Key Export Sectors", "Group": "Men", "Value": 20},
+      {"Metric": "Consumer Purchases by Gender", "Group": "Women", "Value": 80},
+      {"Metric": "Consumer Purchases by Gender", "Group": "Men", "Value": 20},
+      {
+        "Metric": "More Likely to Live in Poverty",
+        "Group": "Women",
+        "Value": 35
+      },
+      {"Metric": "More Likely to Live in Poverty", "Group": "Men", "Value": 65},
+      {"Metric": "Minimum Wage Workers", "Group": "Women", "Value": 66},
+      {"Metric": "Minimum Wage Workers", "Group": "Men", "Value": 34},
+      {
+        "Metric": "Head of Single-Income Households",
+        "Group": "Women",
+        "Value": 81
+      },
+      {
+        "Metric": "Head of Single-Income Households",
+        "Group": "Men",
+        "Value": 19
+      }
+    ]
+  },
+  "layer": [
+    {
+      "mark": "bar",
+      "encoding": {
+        "y": {"field": "Metric", "type": "nominal", "axis": {"title": ""}},
+        "x": {
+          "field": "Value",
+          "type": "quantitative",
+          "stack": "normalize",
+          "axis": {"title": "Share (%)"}
+        },
+        "color": {
+          "field": "Group",
+          "type": "nominal",
+          "scale": {
+            "domain": ["Women", "Men"],
+            "range": ["#e377c2", "#17becf"]
+          },
+          "title": ""
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 11,
+        "align": "left",
+        "baseline": "top",
+        "fontStyle": "italic"
+      },
+      "encoding": {
+        "x": {"value": -180},
+        "y": {"value": 350},
+        "text": {
+          "value": "Sources: Feminist Majority Foundation; Global Alliance for Tax Justice; Yale Budget Lab; Global Trade Research Initiative; field reporting from Tiruppur & Dindigul; U.S. tariff policy announcements."
+        },
+        "color": {"value": "#444"}
+      }
+    }
+  ],
+  "config": {"background": "rgba(0,0,0,0)"}
+}
