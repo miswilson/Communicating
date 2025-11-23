@@ -1,0 +1,234 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "padding": {"top": 10, "right": 10, "bottom": 40, "left": 10},
+  "title": {
+    "text": "Women and Men Working in Different Sectors Drives Unequal Tariff Exposure",
+    "subtitle": "Tariffs don't hit all industry sectors equally",
+    "fontSize": 25,
+    "subtitleFontSize": 14,
+    "dy": -10,
+    "anchor": "start"
+  },
+  "data": {
+    "values": [
+      {"sector": "Communal services", "women": 31, "men": 16},
+      {"sector": "Retail, Hotels & Restaurants", "women": 21, "men": 17},
+      {"sector": "Manufacturing", "women": 13, "men": 12},
+      {"sector": "Finance & Business", "women": 4, "men": 4},
+      {"sector": "Electricity, Gas, Steam & Water", "women": 0.5, "men": 1},
+      {"sector": "Mining", "women": 0.5, "men": 2},
+      {"sector": "Transport & Telecommunications", "women": 2, "men": 8},
+      {"sector": "Agriculture, Hunting, etc.", "women": 27, "men": 29},
+      {"sector": "Construction", "women": 1, "men": 11}
+    ]
+  },
+  "transform": [
+    {"calculate": "-datum.women", "as": "women_neg"},
+    {"calculate": "datum.women + '%'", "as": "women_label"},
+    {"calculate": "datum.men + '%'", "as": "men_label"}
+  ],
+  "vconcat": [
+    {
+      "hconcat": [
+        {
+          "width": 350,
+          "height": 400,
+          "layer": [
+            {
+              "mark": {"type": "bar"},
+              "encoding": {
+                "y": {
+                  "field": "sector",
+                  "type": "nominal",
+                  "sort": {"field": "women", "order": "descending"},
+                  "axis": null,
+                  "scale": {"bandSize": 25, "paddingInner": 0.1}
+                },
+                "x": {
+                  "field": "women_neg",
+                  "type": "quantitative",
+                  "axis": {
+                    "labels": false,
+                    "ticks": false,
+                    "domain": false,
+                    "title": "Women (%)",
+                    "titleFontSize": 30,
+                    "titlePadding": 15
+                  }
+                },
+                "color": {
+                  "field": "sector",
+                  "type": "nominal",
+                  "scale": {
+                    "range": [
+                      "#1f77b4",
+                      "#17becf",
+                      "#bcbd22",
+                      "#7f7f7f",
+                      "#e377c2",
+                      "#8c564b",
+                      "#9467bd",
+                      "#d62728",
+                      "#2ca02c",
+                      "#ff7f0e"
+                    ]
+                  },
+                  "legend": null
+                }
+              }
+            },
+            {
+              "mark": {
+                "type": "text",
+                "align": "right",
+                "dx": -4,
+                "fontSize": 11
+              },
+              "encoding": {
+                "y": {
+                  "field": "sector",
+                  "type": "nominal",
+                  "sort": {"field": "women", "order": "descending"},
+                  "axis": null,
+                  "scale": {"bandSize": 25, "paddingInner": 0.4}
+                },
+                "x": {"field": "women_neg", "type": "quantitative"},
+                "text": {"field": "women_label"}
+              }
+            }
+          ]
+        },
+        {
+          "width": 180,
+          "height": "400",
+          "layer": [
+            {
+              "mark": {"type": "rect", "cornerRadius": 0.5},
+              "encoding": {
+                "y": {
+                  "field": "sector",
+                  "type": "nominal",
+                  "sort": {"field": "women", "order": "descending"},
+                  "axis": null,
+                  "scale": {"bandSize": 25, "paddingInner": 0.1}
+                },
+                "x": {"value": 0},
+                "x2": {"value": 180},
+                "color": {
+                  "field": "sector",
+                  "type": "nominal",
+                  "scale": {"scheme": "category20"},
+                  "legend": null
+                },
+                "opacity": {"value": 0.25}
+              }
+            },
+            {
+              "mark": {"type": "text", "align": "center", "fontSize": 12},
+              "encoding": {
+                "y": {
+                  "field": "sector",
+                  "type": "nominal",
+                  "sort": {"field": "women", "order": "descending"},
+                  "axis": null,
+                  "scale": {"bandSize": 25, "paddingInner": 0.4}
+                },
+                "x": {"value": 90},
+                "text": {"field": "sector"},
+                "color": {"value": "black"}
+              }
+            }
+          ]
+        },
+        {
+          "width": 350,
+          "height": "400",
+          "layer": [
+            {
+              "mark": {"type": "bar"},
+              "encoding": {
+                "y": {
+                  "field": "sector",
+                  "type": "nominal",
+                  "sort": {"field": "women", "order": "descending"},
+                  "axis": null,
+                  "scale": {"bandSize": 25, "paddingInner": 0.4}
+                },
+                "x": {
+                  "field": "men",
+                  "type": "quantitative",
+                  "axis": {
+                    "labels": false,
+                    "ticks": false,
+                    "domain": false,
+                    "title": "Men (%)",
+                    "titleFontSize": 30,
+                    "titlePadding": 15
+                  }
+                },
+                "color": {
+                  "field": "sector",
+                  "type": "nominal",
+                  "scale": {
+                    "range": [
+                      "#1f77b4",
+                      "#17becf",
+                      "#bcbd22",
+                      "#7f7f7f",
+                      "#e377c2",
+                      "#8c564b",
+                      "#9467bd",
+                      "#d62728",
+                      "#2ca02c",
+                      "#ff7f0e"
+                    ]
+                  },
+                  "legend": null
+                }
+              }
+            },
+            {
+              "mark": {
+                "type": "text",
+                "align": "left",
+                "dx": 4,
+                "fontSize": 11
+              },
+              "encoding": {
+                "y": {
+                  "field": "sector",
+                  "type": "nominal",
+                  "sort": {"field": "women", "order": "descending"},
+                  "axis": null,
+                  "scale": {"bandSize": 25, "paddingInner": 0.4}
+                },
+                "x": {"field": "men", "type": "quantitative"},
+                "text": {"field": "men_label"}
+              }
+            }
+          ]
+        }
+      ],
+      "resolve": {"scale": {"y": "shared"}}
+    },
+    {
+      "height": 30,
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "align": "left",
+        "baseline": "top",
+        "fontStyle": "italic"
+      },
+      "encoding": {
+        "x": {"value": 0},
+        "y": {"value": 0},
+        "text": {
+          "value": "Source: WDR 2012 team estimates based on International Labor Organisation (2010) (77 countries)."
+        },
+        "color": {"value": "black"}
+      }
+    }
+  ],
+  "config": {"background": "rgba(0,0,0,0)", "view": {"stroke": null}}
+}
