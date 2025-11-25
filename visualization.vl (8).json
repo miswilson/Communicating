@@ -1,0 +1,245 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "vconcat": [
+    {
+      "title": {
+        "text": [
+          "Tariff Rates Rise with Gender Inequality: Women’s Goods Are Hit Harder"
+        ],
+        "subtitle": [
+          "Consumers in countries with low gender-inequality (2023) face lower tariffs, females face the greater burden",
+          ""
+        ],
+        "anchor": "start",
+        "fontSize": 25,
+        "subtitleFontSize": 18
+      },
+      "data": {
+        "values": [
+          {
+            "Country": "Brazil",
+            "Type": "Women's Goods Tariff (%)",
+            "Tariff": 28.3
+          },
+          {
+            "Country": "Brazil",
+            "Type": "Consumer Products Tariff (%)",
+            "Tariff": 16.5
+          },
+          {
+            "Country": "Germany",
+            "Type": "Women's Goods Tariff (%)",
+            "Tariff": 8.6
+          },
+          {
+            "Country": "Germany",
+            "Type": "Consumer Products Tariff (%)",
+            "Tariff": 5.2
+          },
+          {
+            "Country": "India",
+            "Type": "Women's Goods Tariff (%)",
+            "Tariff": 18.8
+          },
+          {
+            "Country": "India",
+            "Type": "Consumer Products Tariff (%)",
+            "Tariff": 13.5
+          },
+          {
+            "Country": "Tanzania",
+            "Type": "Women's Goods Tariff (%)",
+            "Tariff": 27.8
+          },
+          {
+            "Country": "Tanzania",
+            "Type": "Consumer Products Tariff (%)",
+            "Tariff": 15.4
+          },
+          {
+            "Country": "Thailand",
+            "Type": "Women's Goods Tariff (%)",
+            "Tariff": 17.5
+          },
+          {
+            "Country": "Thailand",
+            "Type": "Consumer Products Tariff (%)",
+            "Tariff": 11.7
+          },
+          {
+            "Country": "United Kingdom",
+            "Type": "Women's Goods Tariff (%)",
+            "Tariff": 6.9
+          },
+          {
+            "Country": "United Kingdom",
+            "Type": "Consumer Products Tariff (%)",
+            "Tariff": 4.9
+          },
+          {
+            "Country": "United States",
+            "Type": "Women's Goods Tariff (%)",
+            "Tariff": 9.1
+          },
+          {
+            "Country": "United States",
+            "Type": "Consumer Products Tariff (%)",
+            "Tariff": 3.7
+          }
+        ]
+      },
+      "transform": [
+        {
+          "lookup": "Country",
+          "from": {
+            "data": {
+              "values": [
+                {"Country": "Germany", "GII": 0.057},
+                {"Country": "United Kingdom", "GII": 0.083},
+                {"Country": "United States", "GII": 0.169},
+                {"Country": "Thailand", "GII": 0.288},
+                {"Country": "Brazil", "GII": 0.39},
+                {"Country": "India", "GII": 0.403},
+                {"Country": "Tanzania", "GII": 0.504}
+              ]
+            },
+            "key": "Country",
+            "fields": ["GII"]
+          }
+        },
+        {
+          "calculate": "datum.Type == \"Women's Goods Tariff (%)\" ? \"Women’s goods\" : \"All consumer goods\"",
+          "as": "PanelLabel"
+        }
+      ],
+      "facet": {
+        "column": {
+          "field": "PanelLabel",
+          "type": "nominal",
+          "title": "",
+          "header": {"labelFontSize": 18, "labelFontWeight": ""}
+        }
+      },
+      "spec": {
+        "width": 320,
+        "height": 420,
+        "layer": [
+          {
+            "mark": {"type": "point", "filled": true},
+            "encoding": {
+              "x": {
+                "field": "Country",
+                "type": "nominal",
+                "sort": [
+                  "Germany",
+                  "United Kingdom",
+                  "United States",
+                  "Thailand",
+                  "Brazil",
+                  "India",
+                  "Tanzania"
+                ],
+                "axis": {"labelAngle": -40, "labelFontSize": 14, "title": ""}
+              },
+              "y": {
+                "field": "Tariff",
+                "type": "quantitative",
+                "title": "Tariff rate (%)",
+                "axis": {
+                  "labelFontSize": 14,
+                  "titleFontSize": 18,
+                  "titleFontWeight": "normal",
+                  "titleAngle": -90,
+                  "titleAnchor": "middle",
+                  "titlePadding": 20
+                }
+              },
+              "size": {
+                "field": "GII",
+                "type": "quantitative",
+                "title": "Gender Inequality Index (2023)",
+                "scale": {"range": [500, 3000], "domain": [0.05, 0.6]},
+                "legend": {
+                  "titleFontSize": 16,
+                  "titleFontWeight": "normal",
+                  "labelFontSize": 16,
+                  "symbolFillColor": "white",
+                  "symbolSize": 400,
+                  "symbolStrokeWidth": 1,
+                  "orient": "right",
+                  "titlePadding": 10,
+                  "labelPadding": 4,
+                  "titleLimit": 0
+                }
+              },
+              "color": {
+                "field": "PanelLabel",
+                "type": "nominal",
+                "title": "",
+                "scale": {
+                  "domain": ["Women’s goods", "All consumer goods"],
+                  "range": ["#e377c2", "#17becf"]
+                },
+                "legend": null
+              },
+              "tooltip": [
+                {"field": "Country"},
+                {"field": "PanelLabel", "title": "Panel"},
+                {"field": "Tariff", "title": "Tariff (%)"},
+                {"field": "GII", "title": "GII (2023)"}
+              ]
+            }
+          },
+          {
+            "mark": {
+              "type": "text",
+              "align": "left",
+              "baseline": "top",
+              "fontWeight": "lighter",
+              "fontSize": 15,
+              "dy": 0,
+              "dx": 1
+            },
+            "encoding": {
+              "text": {"value": "Gender Inequality Ranking (2023), ascending"},
+              "x": {"value": 0},
+              "y": {"value": 430}
+            }
+          }
+        ]
+      },
+      "config": {
+        "header": {
+          "labelFontSize": 22,
+          "labelFontWeight": "",
+          "labelPadding": 0
+        }
+      },
+      "resolve": {"scale": {"y": "shared", "size": "shared"}}
+    },
+    {
+      "width": "container",
+      "height": 60,
+      "view": {"stroke": ""},
+      "data": {"values": [{}]},
+      "mark": {
+        "type": "text",
+        "fontSize": 18,
+        "fontStyle": "italic",
+        "align": "left",
+        "baseline": "top"
+      },
+      "encoding": {
+        "text": {
+          "value": [
+            "Sources: Agarwal, P. (2025). Tariff Burden of Women’s Goods in Trade. ODI Global Background Note.",
+            "UNPD (2025) Human Development Reports, Gender Inequality Index 2023"
+          ]
+        },
+        "x": {"value": -60},
+        "y": {"value": 0}
+      }
+    }
+  ],
+  "config": {"background": "rgba(0,0,0,0)"}
+}
